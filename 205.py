@@ -22,19 +22,15 @@ Output: true
 '''
 class Solution:
     def isIsomorphic(self, s: str, t: str) -> bool:
-        val={}
+        mapper = {}
+        isUsed = {}
         for i in range(len(s)):
-            if s[i] in val:
-                if val[s[i]]!=t[i]:
+            if s[i] in mapper:
+                if mapper[s[i]]!=t[i]: return False
+            else:
+                if t[i] in isUsed and isUsed[t[i]] is True:
                     return False
-            else:
-                val[s[i]]=t[i]
-        g=[]
-        for key, value in val.items():
-            if value in g:
-                return False
-            else:
-                g.append(value)
-                
-        return True
-        
+                else:
+                    mapper[s[i]] = t[i]
+                    isUsed[t[i]] = True
+        return True       
