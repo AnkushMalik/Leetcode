@@ -21,26 +21,19 @@ Output: 1
 class Solution:
     def diameterOfBinaryTree(self, root: TreeNode) -> int:
         self.maxEdge = 0
-        def calculateMaxEdge(node):
-            if not node: return 0
-            if not node.left and not node.right:
-                return 1
-            leftHeight = self.calcHeight(node.left)
-            rightHeight = self.calcHeight(node.right)
-            path = leftHeight+rightHeight
-            if path>self.maxEdge:
-                self.maxEdge = path
-            calculateMaxEdge(node.left)
-            calculateMaxEdge(node.right)
-            return
-        calculateMaxEdge(root)
-            
-                
+        self.findDiameter(root)
         return self.maxEdge
-    def calcHeight(self,root):
-        if not root:
-            return 0
-        if not root.left and not root.right:
-            return 1
-        maxHeight = 1+ max(self.calcHeight(root.left),self.calcHeight(root.right))
-        return maxHeight
+
+    def findDiameter(self, root):
+        distance = 0
+        leftDistance,rightDistance = 0,0
+        
+        if root.left:
+            leftDistance += 1 + self.findDiameter(root.left)
+            distance +=leftDistance
+        if root.right:
+            rightDistance += 1 + self.findDiameter(root.right)
+            distance += rightDistance
+        if self.maxEdge<distance:
+            self.maxEdge = distance
+        return max(leftDistance, rightDistance
