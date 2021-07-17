@@ -27,28 +27,71 @@ Output: [1,5,2,4,3]
 #         self.next = next
 
 ## Bad answer; first approach
+# class Solution:
+#     def reorderList(self, head: ListNode) -> None:
+#         """
+#         Do not return anything, modify head in-place instead.
+#         """
+#         itr = head
+#         nodeInfo = []
+        
+#         while itr:
+#             nodeInfo.append(itr)
+#             itr = itr.next
+#             nodeInfo[-1].next=None
+
+#         ans = nodeInfo.pop(0)
+#         if nodeInfo:
+#             ans.next = nodeInfo.pop()
+#         itr = ans.next
+        
+#         while(len(nodeInfo)!=0):
+#             itr.next = nodeInfo.pop(0)
+#             itr = itr.next
+#             if(len(nodeInfo)!=0):
+#                 itr.next = nodeInfo.pop()
+#                 itr = itr.next
+#         return ans
+
+
+# Good Approach O(n):
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
 class Solution:
     def reorderList(self, head: ListNode) -> None:
         """
         Do not return anything, modify head in-place instead.
         """
+        mid = head
+        fast = head
+        while fast and fast.next:
+            fast = fast.next.next
+            mid = mid.next
+        
+        newLL = mid.next  
+        mid.next = None
+        prev = None
+        while newLL:
+            curr = newLL
+            newLL = newLL.next
+            curr.next = prev
+            prev = curr
+        
         itr = head
-        nodeInfo = []
-        
-        while itr:
-            nodeInfo.append(itr)
+        ans = itr
+        head = head.next
+        while prev:
+            elem = prev
+            prev = prev.next
+            itr.next = elem
             itr = itr.next
-            nodeInfo[-1].next=None
 
-        ans = nodeInfo.pop(0)
-        if nodeInfo:
-            ans.next = nodeInfo.pop()
-        itr = ans.next
-        
-        while(len(nodeInfo)!=0):
-            itr.next = nodeInfo.pop(0)
+            elem = head
+            head = head.next
+            itr.next = elem
             itr = itr.next
-            if(len(nodeInfo)!=0):
-                itr.next = nodeInfo.pop()
-                itr = itr.next
         return ans
