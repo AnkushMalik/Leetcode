@@ -31,3 +31,28 @@ class Solution:
             count += val
             if count>=k:
                 return key
+
+# using Binary Search:
+# class Solution:
+#     def kthSmallest(self, matrix: List[List[int]], k: int) -> int:
+#         return self.findKthSmallest(matrix,matrix[0][0],matrix[-1][-1],k)
+
+#     def findKthSmallest(self,matrix,minE,maxE,k):
+#         if minE>=maxE:
+#             return minE
+#         mid = minE+(maxE-minE)//2
+        
+#         relevantElem = []
+        
+#         for j in range(len(matrix[0])):
+#             for i in range(len(matrix)-1,-1,-1):
+#                 if matrix[i][j]<minE: break
+#                 if matrix[i][j]<=mid: relevantElem.insert(len(relevantElem),matrix[i][j])
+
+#         rec = len(relevantElem)
+#         if k==rec:
+#             return max(relevantElem)
+#         elif k<rec:
+#             return self.findKthSmallest(matrix,minE,mid,k)
+#         else:
+#             return self.findKthSmallest(matrix,mid+1,maxE,k-rec)
