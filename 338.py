@@ -54,3 +54,18 @@ class Solution:
                 i-=1
         if carr: n.insert(0,'1')
         return ''.join(n)
+
+#after learning bit manipulation trick in Q.191
+class Solution:
+    def countBits(self, n: int) -> List[int]:
+        ans = []
+        for i in range(n+1):
+            ans.insert(i,self.popCount(i))
+        return ans
+    
+    def popCount(self,n):
+        s = 0
+        while n!=0:
+            n &=(n-1)
+            s+=1
+        return s
