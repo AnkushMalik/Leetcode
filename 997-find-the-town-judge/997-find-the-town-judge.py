@@ -4,5 +4,8 @@ class Solution:
         for i in trust:
             arr[i[0]-1]+=1
             arr[i[1]-1]-=1
-        return arr.index(1-n)+1 if 1-n in arr else -1
+        for i in range(n):
+            if arr[i]-1==-n:
+                return i+1
+        return -1
                 
