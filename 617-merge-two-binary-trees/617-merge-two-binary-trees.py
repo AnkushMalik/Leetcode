@@ -11,7 +11,8 @@ class Solution:
             a = r1.val if r1 else 0
             b = r2.val if r2 else 0
             root = TreeNode(a+b)
-            root.left = dfs(r1 and r1.left, r2 and r2.left)
-            root.right = dfs(r1 and r1.right, r2 and r2.right)
+            if r1 or r2:
+                root.left = dfs(r1 and r1.left, r2 and r2.left)
+                root.right = dfs(r1 and r1.right, r2 and r2.right)
             return root
         return dfs(root1,root2)
