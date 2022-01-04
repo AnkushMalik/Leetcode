@@ -13,14 +13,15 @@ class Solution:
         if not root: return
         arr = [root]
         while arr:
-            temp = []
-            while arr:
+            lim = len(arr)
+            i = 0
+            while i<lim:
                 ptr = arr.pop(0)
-                ptr.next = arr[0] if arr else None
+                ptr.next = arr[0] if i<lim-1 else None
                 if ptr.left:
-                    temp.append(ptr.left)
-                    temp.append(ptr.right)
-            arr = temp
+                    arr.append(ptr.left)
+                    arr.append(ptr.right)
+                i+=1
         return root
                 
                      
