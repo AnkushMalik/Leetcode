@@ -6,7 +6,8 @@
 #         self.right = right
 class Solution:
     def mergeTrees(self, root1: Optional[TreeNode], root2: Optional[TreeNode]) -> Optional[TreeNode]:
-        if not root1: return root2
+        if not root1 or not root2:
+            return root1 or root2
         def dfs(r1,r2):
             if not r2: return r1
             r1.val+=r2.val
