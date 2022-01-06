@@ -1,8 +1,7 @@
 class Solution:
     def carPooling(self, trips: List[List[int]], capacity: int) -> bool:
-        hp = [[i[1],(i[0],i[2])] for i in trips]
+        hp = sorted([[i[1],(i[0],i[2])] for i in trips])
         incar = []
-        hp.sort()
         passCount = 0
         for newP in hp:
             count = newP[1][0]
