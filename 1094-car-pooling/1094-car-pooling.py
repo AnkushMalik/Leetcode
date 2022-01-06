@@ -1,13 +1,10 @@
 class Solution:
     def carPooling(self, trips: List[List[int]], capacity: int) -> bool:
-        hp = []
-
-        for i in trips: heappush(hp,(i[1],(i[0],i[2])))
-        
+        hp = [[i[1],(i[0],i[2])] for i in trips]
         incar = []
+        hp.sort()
         passCount = 0
-        while(hp):
-            newP = heappop(hp)
+        for newP in hp:
             count = newP[1][0]
             i = 0
             while(i<len(incar)):
