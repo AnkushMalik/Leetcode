@@ -1,8 +1,7 @@
 class Solution:
     def rob(self, nums: List[int]) -> int:
         if len(nums)==1: return nums[0]
-        mem = {}
-        return max(self.robIt(nums,0,mem),self.robIt(nums,1,mem))
+        return self.robIt(nums,0,{})
     
     def robIt(self, arr, idx,memo):
         if idx>=len(arr): return 0
