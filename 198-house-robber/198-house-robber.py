@@ -1,6 +1,5 @@
 class Solution:
     def rob(self, nums: List[int]) -> int:
-        if len(nums)==1: return nums[0]
         return self.robIt(nums,0,{})
     
     def robIt(self, arr, idx,memo):
