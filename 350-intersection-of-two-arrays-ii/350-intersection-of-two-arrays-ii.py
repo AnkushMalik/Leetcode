@@ -1,11 +1,17 @@
 class Solution:
     def intersect(self, nums1: List[int], nums2: List[int]) -> List[int]:
         ans = []
-        while nums1 and nums2:
-            k = nums1.pop()
-            for i in range(len(nums2)):
-                if nums2[i]==k:
-                    nums2.pop(i)
-                    ans.append(k)
-                    break;
-        return ans
+        nums1.sort()
+        nums2.sort()
+        i = j = k = 0
+        while(i<len(nums1) and j<len(nums2)):
+            if nums1[i]>nums2[j]:
+                j+=1
+            elif nums1[i]<nums2[j]:
+                i+=1
+            else:
+                nums1[k]=nums1[i]
+                k+=1
+                i+=1
+                j+=1
+        return nums1[:k]
