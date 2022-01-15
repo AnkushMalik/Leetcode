@@ -23,11 +23,11 @@ class Solution:
             for j in chkpoints:
                 start = i-3
                 end = j-3
-                chk = [0]*10
+                chk = [0]*9
                 for k in range(i-3,i):
                     for l in range(j-3,j):
                         if board[k][l].isdigit():
-                            chk[int(board[k][l])]+=1
-                            if chk[int(board[k][l])]==2:
+                            chk[int(board[k][l])-1]+=1
+                            if chk[int(board[k][l])-1]==2:
                                 return False
         return True
