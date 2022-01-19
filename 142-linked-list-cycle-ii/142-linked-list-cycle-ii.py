@@ -7,10 +7,10 @@
 class Solution:
     def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
         ptr = head
-        hsh = {}
+        vis = set()
         while(head):
-            if head in hsh: return head
+            if head in vis: return head
             else:
-                hsh[head]=head.val
+                vis.add(head)
                 head=head.next
         return None
