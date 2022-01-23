@@ -9,11 +9,12 @@ class Solution:
         stk = [root]
         while stk:
             temp = []
-            for i in range(len(stk)):
-                if stk[i]==u:
-                    return stk[i+1] if i!=len(stk)-1 else None
+            while stk:
+                node = stk.pop(0)
+                if node==u:
+                    return stk[0] if stk else None
                 else:
-                    if stk[i].left: temp.append(stk[i].left)
-                    if stk[i].right: temp.append(stk[i].right)
+                    if node.left: temp.append(node.left)
+                    if node.right: temp.append(node.right)
             stk = temp
         return None
