@@ -1,10 +1,8 @@
 class Solution:
     def validMountainArray(self, arr: List[int]) -> bool:
         if len(arr)<3: return False
-        maxi = arr.index(max(arr))
-        if maxi==0 or maxi==len(arr)-1: return False
-        for i in range(1,maxi):
-            if arr[i]-arr[i-1]<=0:return False
-        for i in range(maxi+1,len(arr)):
-            if arr[i]-arr[i-1]>=0: return False
-        return True
+        i = 0
+        while(i<len(arr)-1 and arr[i]<arr[i+1]): i+=1
+        if i==0 or i ==len(arr)-1: return False
+        while(i<len(arr)-1 and arr[i]>arr[i+1]): i+=1
+        return True if i==len(arr)-1 else False
