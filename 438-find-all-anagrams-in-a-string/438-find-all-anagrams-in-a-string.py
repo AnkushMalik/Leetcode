@@ -1,10 +1,11 @@
 class Solution:
     def findAnagrams(self, s: str, p: str) -> List[int]:
         if len(p)>len(s): return []
-        pHash = self.makeHash(p)
         ans = []
-        i=0
+        pHash = [0]*26
         wd = [0]*26
+        for i in p: pHash[ord(i)-ord('a')]+=1
+        i=0
         while(i<len(s)):
             if i>=len(p):
                 if wd==pHash:
@@ -15,11 +16,5 @@ class Solution:
             else:
                 wd[ord(s[i])-ord('a')]+=1
             i+=1
-        if wd==pHash:
-            ans.append(i-len(p))
+        if wd==pHash: ans.append(i-len(p))
         return ans
-    def makeHash(self, s):
-        arr = [0]*26
-        for i in s:
-            arr[ord(i)-ord('a')]+=1
-        return arr
