@@ -5,9 +5,10 @@ class Solution:
             if j>=len(cost)-1: return 0
             if j in stepCount: return stepCount[j]
             else:
-                firstStep = cost[j]+findLowestCost(cost,j+1)
-                secondStep = cost[j+1]+findLowestCost(cost,j+2)
-                stepCount[j]=min(firstStep,secondStep)
+                stepCount[j]=min(
+                    cost[j]+findLowestCost(cost,j+1),
+                    cost[j+1]+findLowestCost(cost,j+2)
+                )
                 return stepCount[j]
         return findLowestCost(cost)
         
