@@ -2,7 +2,6 @@ class Trie:
 
     def __init__(self):
         self.dic = {}
-        
 
     def insert(self, word: str) -> None:
         dic = self.dic
@@ -21,20 +20,18 @@ class Trie:
                 return 0
             else:
                 dic = dic[i]
-        curr = dic["count"]
-        children = 0
+        wordCount = dic["count"]
         for i in dic:
             if i!='$' and i!="count":
-                children+=dic[i]["count"]
-        return curr-children
+                wordCount-=dic[i]["count"]
+        return wordCount
 
     def countWordsStartingWith(self, prefix: str) -> int:
         dic = self.dic
         for i in prefix:
             if i not in dic:
                 return 0
-            else:
-                dic = dic[i]
+            else: dic = dic[i]
         return dic["count"]
 
     def erase(self, word: str) -> None:
