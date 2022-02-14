@@ -11,7 +11,6 @@ class Trie:
             else:
                 dic[i] = {"count":1}
             dic = dic[i]
-        dic['$']=None
 
     def countWordsEqualTo(self, word: str) -> int:
         dic = self.dic
@@ -22,7 +21,7 @@ class Trie:
                 dic = dic[i]
         wordCount = dic["count"]
         for i in dic:
-            if i!='$' and i!="count":
+            if i!="count":
                 wordCount-=dic[i]["count"]
         return wordCount
 
