@@ -1,15 +1,13 @@
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
         self.ans = []
-        uniq = []
         self.findAllCombs(candidates,target,[])
-        for i in self.ans:
-            if i not in uniq: uniq.append(i)
-        return uniq
+        return self.ans
     
     def findAllCombs(self,arr,t,path):
         if t==0:
-            self.ans.append(sorted(path[:]))
+            combo = sorted(path)
+            if combo not in self.ans: self.ans.append(combo)
         if t<0:
             return
         for i in arr:
