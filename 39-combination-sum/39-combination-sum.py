@@ -8,9 +8,6 @@ class Solution:
         if t==0:
             combo = sorted(path)
             if combo not in self.ans: self.ans.append(combo)
-        if t<0:
-            return
+        if t<0: return
         for i in arr:
-            path.append(i)
-            self.findAllCombs(arr,t-i,path)
-            path.pop()
+            self.findAllCombs(arr,t-i,path+[i])
