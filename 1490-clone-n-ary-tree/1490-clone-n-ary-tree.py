@@ -1,10 +1,8 @@
 class Solution:
     def cloneTree(self, root: 'Node') -> 'Node':
-        if root: ans = Node(root.val,[])
-        else: return None
-        def dfs(node,orig):
-            for i in orig.children:
-                node.children.append(Node(i.val,[]))
-                dfs(node.children[-1],i)
-        dfs(ans,root)
-        return ans
+        if not root: return None
+        def dfs(orig):
+            cnode = Node(orig.val,[])
+            cnode.children = [dfs(i) for i in orig.children]
+            return cnode
+        return dfs(root)
