@@ -3,7 +3,7 @@ class Solution:
         if root: ans = Node(root.val,[])
         else: return None
         def dfs(node,orig):
-            if not orig: return None
+            if not orig: return
             for i in orig.children:
                 node.children.append(Node(i.val,[]))
                 dfs(node.children[-1],i)
