@@ -1,14 +1,7 @@
-"""
-# Definition for a Node.
-class Node:
-    def __init__(self, val=None, children=None):
-        self.val = val
-        self.children = children if children is not None else []
-"""
-
 class Solution:
     def cloneTree(self, root: 'Node') -> 'Node':
-        ans = Node(root.val,[]) if root else None
+        if root: ans = Node(root.val,[])
+        else: return None
         def dfs(node,orig):
             if not orig: return None
             for i in orig.children:
