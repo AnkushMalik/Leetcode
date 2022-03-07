@@ -1,13 +1,12 @@
 class Solution:
     def countComponents(self, n: int, edges: List[List[int]]) -> int:
         adjList = [[] for _ in range(n)]
-        
-        for p,c in edges:
+        for p,c  in edges:
             adjList[p].append(c)
             adjList[c].append(p)
         
-        count = 0
         visited = [0]*n
+        count = 0
         for i in range(n):
             if visited[i]==0:
                 count+=1
@@ -20,4 +19,3 @@ class Solution:
                             visited[nbr]=1
                             stk.append(nbr)
         return count
-            
