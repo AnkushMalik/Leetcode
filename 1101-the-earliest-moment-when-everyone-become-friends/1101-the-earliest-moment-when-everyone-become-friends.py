@@ -14,7 +14,6 @@ class Solution:
 class UnionFind:
     def __init__(self,size):
         self.group = [i for i in range(size)]
-        self.rank = [1 for _ in range(size)]
     
     def find(self,node):
         while(node!=self.group[node]):
@@ -27,12 +26,8 @@ class UnionFind:
         
         if grp_a==grp_b: return False
         
-        if self.rank[grp_a]>self.rank[grp_b]:
-            self.group[grp_b] = grp_a
-        elif self.rank[grp_b]>self.rank[grp_a]:
-            self.group[grp_a] = grp_b
-        else:
-            self.group[grp_b]=grp_a
-            self.rank[grp_a]+=1
+        for i in range(len(self.group)):
+            if self.group[i]==grp_b:
+                self.group[i]=grp_a
         return True
             
