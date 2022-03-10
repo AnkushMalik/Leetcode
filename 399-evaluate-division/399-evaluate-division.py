@@ -1,13 +1,12 @@
 class Solution:
     def calcEquation(self, equations: List[List[str]], values: List[float], queries: List[List[str]]) -> List[float]:
         adjHash = {}
-        for p,q in equations:
-            if p not in adjHash: adjHash[p]=[]
-            if q not in adjHash: adjHash[q]=[]
 
         for i in range(len(equations)):
-            val = values[i]
             x,y = equations[i]
+            val = values[i]
+            if x not in adjHash: adjHash[x]=[]
+            if y not in adjHash: adjHash[y]=[]
             adjHash[x].append([y,val])
             adjHash[y].append([x,1/val])
         
