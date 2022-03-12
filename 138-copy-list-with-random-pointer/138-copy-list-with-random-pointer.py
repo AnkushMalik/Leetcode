@@ -8,19 +8,12 @@ class Node:
 """
 
 class Solution:
+    hsh = {}
     def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
         if not head: return None
-        ptr1 = head
-        ptr2 = head
-        hsh = {}
-        while ptr1:
-            hsh[ptr1] = Node(ptr1.val)
-            ptr1 = ptr1.next
-        ans = hsh[head]
-        ansptr = ans
-        while ptr2:
-            if ptr2.next: ansptr.next = hsh[ptr2.next]
-            if ptr2.random: ansptr.random = hsh[ptr2.random]
-            ptr2 = ptr2.next
-            ansptr = ansptr.next
-        return ans
+        if head in self.hsh: return self.hsh[head]
+        node = Node(head.val)
+        self.hsh[head] = node
+        node.next = self.copyRandomList(head.next)
+        node.random = self.copyRandomList(head.random)
+        return node
