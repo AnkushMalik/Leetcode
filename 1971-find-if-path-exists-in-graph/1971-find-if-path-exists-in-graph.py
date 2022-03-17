@@ -8,16 +8,14 @@ class Solution:
             adjList[p].append(q)
             adjList[q].append(p)
         
-        visited = [0]*n
-        stk = [source]
-        
-        while(stk):
-            node = stk.pop()
-            visited[node]=1
+        visited = [0]*n        
+        def dfs(node):
+            if node == destination: return True
             for nbr in adjList[node]:
-                if nbr==destination: return True
                 if visited[nbr]: continue
-                stk.append(nbr)
                 visited[nbr]=1
-        return False
+                if dfs(nbr): return True
+            return False
+                
+        return dfs(source)
             
