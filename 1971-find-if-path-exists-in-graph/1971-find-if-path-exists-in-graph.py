@@ -1,26 +1,23 @@
 class Solution:
     def validPath(self, n: int, edges: List[List[int]], source: int, destination: int) -> bool:
-        group = [i for i in range(n)]
-        rank = [0 for _ in range(n)]
-        def find(x):
-            if x!=group[x]:
-                x = find(group[x])
-            return group[x]
-        
-        def union(ga,gb):
-            if ga==gb: return
-            if rank[ga]>rank[gb]:
-                group[gb]=ga
-            else:
-                group[ga]=gb
-                if rank[ga]==rank[gb]:
-                    rank[gb]+=1
-        
+        if source==destination: return True
+        adjList = {}
         for p,q in edges:
-            gp = find(p)
-            gq = find(q)
-            if gp!=gq:
-                union(gp,gq)
+            if p not in adjList: adjList[p]=[]
+            if q not in adjList: adjList[q]=[]
+            adjList[p].append(q)
+            adjList[q].append(p)
         
-        return find(source)==find(destination)
+        visited = [0]*n
+        stk = [source]
+        
+        while(stk):
+            node = stk.pop()
+            visited[node]=1
+            for nbr in adjList[node]:
+                if nbr==destination: return True
+                if visited[nbr]: continue
+                stk.append(nbr)
+                visited[nbr]=1
+        return False
             
