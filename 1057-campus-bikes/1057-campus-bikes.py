@@ -6,14 +6,12 @@ class Solution:
             for j in range(len(bikes)):
                 hamDist = abs(workers[i][0]-bikes[j][0])+abs(workers[i][1]-bikes[j][1])
                 pairs.append([hamDist,i,j])
-        count = 0
         pairs.sort()
-        k = 0
-        while k<len(workers):
-            [d,w,b] =pairs[count]
+        i = 0
+        for d,w,b in pairs:
             if ans[w]==-1 and bikes[b]!='X':
                 ans[w]=b
                 bikes[b]='X'
-                k+=1
-            count+=1
+                i+=1
+            if i==len(workers): break
         return ans
