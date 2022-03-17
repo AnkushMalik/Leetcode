@@ -1,6 +1,5 @@
 class Solution:
     def scoreOfParentheses(self, s: str) -> int:
-        if len(s)==0: return 1
         stk = []
         ptr = 0
         score = 0
