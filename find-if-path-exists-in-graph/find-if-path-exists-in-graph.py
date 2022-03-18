@@ -1,20 +1,20 @@
 class Solution:
     def validPath(self, n: int, edges: List[List[int]], source: int, destination: int) -> bool:
-        group = [i for i in range(n)]
-        def find(x):
-            if x!=group[x]:
-                x = find(group[x])
-            return group[x]
-        
-        def union(ga,gb):
-            if ga==gb: return
-            group[ga]=gb
-        
+        adjList = {}
         for p,q in edges:
-            gp = find(p)
-            gq = find(q)
-            if gp!=gq:
-                union(gp,gq)
+            if p not in adjList: adjList[p]=[]
+            if q not in adjList: adjList[q]=[]
+            adjList[p].append(q)
+            adjList[q].append(p)
         
-        return find(source)==find(destination)
+        visited = [0]*n        
+        def dfs(node):
+            if node == destination: return True
+            for nbr in adjList[node]:
+                if visited[nbr]: continue
+                visited[nbr]=1
+                if dfs(nbr): return True
+            return False
+                
+        return dfs(source)
             
