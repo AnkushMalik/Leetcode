@@ -4,10 +4,11 @@ class Solution:
         lastOcc = {c:i for i,c in enumerate(s)}
         seen = set()
         for i in range(len(s)):
-            if s[i] not in seen:
-                while stk and i<lastOcc[stk[-1]] and stk[-1]>s[i]:
+            c = s[i]
+            if c not in seen:
+                while stk and i<lastOcc[stk[-1]] and stk[-1]>c:
                     seen.discard(stk.pop())
-                stk.append(s[i])
-                seen.add(s[i])
+                stk.append(c)
+                seen.add(c)
         return ''.join(stk)
             
