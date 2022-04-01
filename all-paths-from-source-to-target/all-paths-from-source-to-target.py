@@ -6,6 +6,8 @@ class Solution:
                 ans.append(path[:])
             else:
                 for e in arr:
-                    tracking(graph[e], path+[e], e)
+                    path.append(e)
+                    tracking(graph[e], path, e)
+                    path.pop()
         tracking(graph[0], [0], 0)
         return ans
