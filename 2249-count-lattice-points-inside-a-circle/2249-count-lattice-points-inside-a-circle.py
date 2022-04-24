@@ -1,7 +1,10 @@
 class Solution:
     def countLatticePoints(self, circles: List[List[int]]) -> int:
         lattices = set()
-        for circle in circles:
+        tcircles = set()
+        for c in circles:
+            tcircles.add(tuple(c))
+        for circle in tcircles:
             x,y,r = circle
             for X in range(x-r,x+r+1):
                 for Y in range(y-r, y+r+1):
