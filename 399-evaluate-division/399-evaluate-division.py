@@ -20,6 +20,7 @@ class Solution:
                 temp = max(findValue(nbr_node,toFind,prod*val,visited ),temp)
                 visited[nbr_node]=False
             return temp
+
         res = [-1]*len(queries)
         for i in range(len(queries)):
             x,y = queries[i]
