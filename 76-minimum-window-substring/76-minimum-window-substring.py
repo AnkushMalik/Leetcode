@@ -1,9 +1,8 @@
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
         h1, h2 = [0]*58, [0]*58        
-        setS = set(s)
         for i in t:
-            if i not in setS: return ''
+            if i not in s: return ''
             h2[ord(i)-ord('A')]+=1
 
         def isValid(h):
