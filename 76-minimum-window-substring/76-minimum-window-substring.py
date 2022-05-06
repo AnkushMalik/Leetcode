@@ -1,13 +1,6 @@
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
-        i, j  = 0, len(s)-1
-        if len(t)>len(s): return ''
-        while(i<j):
-            if s[i] in t and s[j] in t: break
-            if s[i] not in t: i+=1
-            if s[j] not in t: j-=1
-        s = s[i:j+1]
-        h1, h2 = [0]*58, [0]*58
+        h1, h2 = [0]*58, [0]*58        
         setS = set(s)
         for i in t:
             if i not in setS: return ''
