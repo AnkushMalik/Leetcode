@@ -8,8 +8,9 @@ class Solution:
             if s[j] not in t: j-=1
         s = s[i:j+1]
         h1, h2 = [0]*58, [0]*58
+        setS = set(s)
         for i in t:
-            if i not in s: return ''
+            if i not in setS: return ''
             h2[ord(i)-ord('A')]+=1
         # for i in s: h1[ord(i)-ord('A')]+=1
 
