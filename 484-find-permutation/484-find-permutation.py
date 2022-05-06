@@ -4,7 +4,8 @@ class Solution:
         for i in range(len(s)):
             stk.append(i+1)
             if s[i]=='I':
-                while stk: ans.append(stk.pop())
+                ans += stk[::-1]
+                stk = []
         stk.append(len(s)+1)
-        while stk: ans.append(stk.pop())
+        ans += stk[::-1]
         return ans
