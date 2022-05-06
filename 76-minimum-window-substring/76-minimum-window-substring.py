@@ -12,29 +12,26 @@ class Solution:
         for i in t:
             if i not in setS: return ''
             h2[ord(i)-ord('A')]+=1
-        # for i in s: h1[ord(i)-ord('A')]+=1
 
         def isValid(h):
             for i in range(58):
                 if h2[i] and h2[i]>h[i]: return False
             return True
         
-        ans = s
+        ans = s+t
         stk = []
-        wasEverChanged = False
         for i in range(len(s)):
             idx = ord(s[i])-ord('A')
             h1[idx]+=1
             stk.append(s[i])
             check = isValid(h1)
             while(check):
-                wasEverChanged = True
                 if len(stk)<len(ans): ans = ''.join(stk)
                 elem = stk.pop(0)
                 eid = ord(elem) - ord('A')
                 h1[eid] -= 1
                 check = isValid(h1)
-        return ans if wasEverChanged else ''
+        return ans if len(ans)<=len(s) else ''
                 
                 
                 
